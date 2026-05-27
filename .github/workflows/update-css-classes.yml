@@ -1,0 +1,43 @@
+name: Update CSS Classes Example
+
+on:
+  workflow_dispatch:
+    inputs:
+      files:
+        description: 'Files to update (glob patterns)'
+        required: false
+        default: 'src/**/*.css'
+  schedule:
+    # Run every Sunday at midnight
+    - cron: '0 0 * * 0'
+
+jobs:
+  update-css-classes:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Update CSS classes
+        id: update
+        uses: Kamiikaze/bd-class-check@0.0.1-alpha1
+        with:
+          files: ${{ github.event.inputs.files || 'src/**/*.css' }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          branch-name: 'update-css-classes'
+          pr-title: 'chore: Update CSS class names'
+          pr-labels: 'dependencies,automated,css'
+
+      - name: Output results
+        if: always()
+        run: |
+          echo "Has changes: ${{ steps.update.outputs.has-changes }}"
+          echo "Total changes: ${{ steps.update.outputs.total-changes }}"
+          echo "Modified files: ${{ steps.update.outputs.modified-files }}"
+          echo "PR number: ${{ steps.update.outputs.pr-number }}"
