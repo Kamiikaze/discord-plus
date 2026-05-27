@@ -26,7 +26,7 @@ jobs:
 
       - name: Update CSS classes
         id: update
-        uses: Kamiikaze/bd-class-check@0.0.1-alpha1
+        uses: Kamiikaze/bd-class-check@latest
         with:
           files: ${{ github.event.inputs.files || 'src/**/*.css' }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
