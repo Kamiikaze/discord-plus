@@ -1,0 +1,20 @@
+{
+  "totalChanges": 2,
+  "modifiedFiles": [
+    "src/DiscordPlus-source.theme.css"
+  ],
+  "changes": [
+    {
+      "file": "src/DiscordPlus-source.theme.css",
+      "line": 1195,
+      "oldClass": "card_b846e5",
+      "newClass": "card__4bb93"
+    },
+    {
+      "file": "src/DiscordPlus-source.theme.css",
+      "line": 1195,
+      "oldClass": "button__9a406",
+      "newClass": "button_e18686"
+    }
+  ]
+}
